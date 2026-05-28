@@ -23,10 +23,15 @@ A telehealth vision-testing web app that uses **YOLOv8** for real-time hand gest
 
 Due to the specific pattern recognition of the underlying YOLOv8 dataset, the AI distinguishes directions based on specific finger shapes rather than spatial movement. Please use the following gestures to interact with the Landolt C chart:
 
-* 👈 / 👉 **Index Finger (`<--` / `-->`)** = Controls **LEFT** / **UP** / **DOWN** directions.
-* 👍 **Horizontal Thumb Pointing** = Controls **RIGHT** direction.
+| Gesture | Direction |
+|---|---|
+| 👈 Index Finger pointing left (`<--`) | **LEFT** |
+| 👉 Index Finger pointing right (`-->`) | **LEFT** |
+| 👆 Index Finger pointing up | **UP** |
+| 👇 Index Finger pointing down | **DOWN** |
+| 👍 Horizontal Thumb | **RIGHT** |
 
-*Note: The camera feed is horizontally flipped (mirror mode) by default to make hand-eye coordination more natural for the patient.*
+> **Note:** The camera feed is horizontally flipped (mirror mode) by default to make hand-eye coordination more natural for the patient.
 
 ---
 
@@ -42,20 +47,35 @@ smartsight_master/
     └── index.html          # Clinical SaaS dashboard frontend (UI/UX)
 ```
 
-Quick Start Guide
-1. Clone the repository
-```text
-git clone [https://github.com/danghaihoangwork-beep/smart-sight-vision-testing.git](https://github.com/danghaihoangwork-beep/smart-sight-vision-testing.git)
+---
+
+## Quick Start Guide
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/danghaihoangwork-beep/smart-sight-vision-testing.git
 cd smart-sight-vision-testing
 ```
-2. Install dependencies
-Make sure you have Python 3.8+ installed, then run:
-```text
+
+### 2. Install dependencies
+
+Make sure you have **Python 3.8+** installed, then run:
+
+```bash
 pip install -r requirements.txt
 ```
-3. Run the Clinical Server
-```text
+
+### 3. Run the Clinical Server
+
+```bash
 python app.py
 ```
-4. Access the Dashboard
-Open your web browser (Chrome or Edge recommended) and navigate to: http://localhost:5050
+
+### 4. Access the Dashboard
+
+Open your web browser (**Chrome** or **Edge** recommended) and navigate to:
+
+```
+http://localhost:5050
+```
