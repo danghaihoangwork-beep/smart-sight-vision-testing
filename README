@@ -1,0 +1,61 @@
+# SmartSight v2.1 — AI-Powered Clinical Vision Testing System
+
+A telehealth vision-testing web app that uses **YOLOv8** for real-time hand gesture recognition and **MediaPipe / OpenCV** for face detection and distance estimation. Patients point their hand in the direction of the opening in a rotating Landolt C optotype; the system scores their visual acuity automatically using the international Snellen chart scale.
+
+---
+
+## Features
+
+| Feature | Description |
+|---|---|
+| **YOLOv8 Gesture Recognition** | Detects hand direction in real-time with optimized downsampled inference for high FPS. |
+| **Distance Estimation** | Estimates physical distance (cm) from the camera using dynamic face-width bounding boxes. |
+| **15-Second Timeout** | Automatically flags incorrect attempts and changes the target if no answer is provided. |
+| **Cognitive Delay Tracking** | Measures response time and flags hesitation if the patient takes > 2.5 seconds to answer. |
+| **Anti-Cheat / Gaze Tracking** | Pauses scoring and alerts the clinician if the patient's face disappears for > 1 second. |
+| **HIPAA Privacy Mode** | Live Gaussian-blur face anonymization that can be toggled on/off by the clinician. |
+| **Majority Voting Filter** | Requires a 10/15 frame confidence consensus before scoring to eliminate noise/jitter. |
+| **Snellen Acuity Mapping** | Automatic Score → `20/200` to `20/20` clinical vision level conversion. |
+
+---
+
+## Gesture Navigation Guide
+
+Due to the specific pattern recognition of the underlying YOLOv8 dataset, the AI distinguishes directions based on specific finger shapes rather than spatial movement. Please use the following gestures to interact with the Landolt C chart:
+
+* 👈 / 👉 **Index Finger (`<--` / `-->`)** = Controls **LEFT** / **UP** / **DOWN** directions.
+* 👍 **Horizontal Thumb Pointing** = Controls **RIGHT** direction.
+
+*Note: The camera feed is horizontally flipped (mirror mode) by default to make hand-eye coordination more natural for the patient.*
+
+---
+
+## Project Structure
+
+```text
+smartsight_master/
+├── app.py                  # Flask backend & Core AI Logic (YOLO + OpenCV)
+├── best.pt                 # Custom-trained YOLOv8 weights
+├── requirements.txt        # Python dependencies
+├── README.md               # Project documentation
+└── templates/
+    └── index.html          # Clinical SaaS dashboard frontend (UI/UX)
+```
+
+Quick Start Guide
+1. Clone the repository
+```text
+git clone [https://github.com/danghaihoangwork-beep/smart-sight-vision-testing.git](https://github.com/danghaihoangwork-beep/smart-sight-vision-testing.git)
+cd smart-sight-vision-testing
+```
+2. Install dependencies
+Make sure you have Python 3.8+ installed, then run:
+```text
+pip install -r requirements.txt
+```
+3. Run the Clinical Server
+```text
+python app.py
+```
+4. Access the Dashboard
+Open your web browser (Chrome or Edge recommended) and navigate to: http://localhost:5050
